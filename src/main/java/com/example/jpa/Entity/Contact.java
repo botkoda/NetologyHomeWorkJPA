@@ -1,4 +1,4 @@
-package com.example.JPA.Entity;
+package com.example.jpa.Entity;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;

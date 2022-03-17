@@ -1,6 +1,6 @@
-package com.example.JPA.Repository;
+package com.example.jpa.Repository;
 
-import com.example.JPA.Entity.Person;
+import com.example.jpa.Entity.Person;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,7 +15,7 @@ public class MainRepository {
     private EntityManager entityManager;
 
     public List<Person> getPersonsByCity(String city){
-        Query query=entityManager.createQuery("select p from Person p where p.CityOfLiving=:city",Person.class);
+        Query query=entityManager.createQuery("select p from Person p where p.cityOfLiving=:city",Person.class);
         query.setParameter("city",city);
         List resultList = query.getResultList();
         return resultList;

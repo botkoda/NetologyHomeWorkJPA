@@ -1,4 +1,4 @@
-package com.example.JPA.Entity;
+package com.example.jpa.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +16,6 @@ public class Person {
     @EmbeddedId
     private Contact contact;
     @Column(length = 11)
-    private String phone_number;
-    private String CityOfLiving;
+    private String phoneNumber;
+    private String cityOfLiving;
 }

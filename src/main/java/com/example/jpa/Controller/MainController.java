@@ -1,7 +1,7 @@
-package com.example.JPA.Controller;
+package com.example.jpa.Controller;
 
-import com.example.JPA.Entity.Person;
-import com.example.JPA.Repository.MainRepository;
+import com.example.jpa.Entity.Person;
+import com.example.jpa.Repository.MainRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,13 +13,15 @@ import java.util.List;
 @RequestMapping("/")
 public class MainController {
 
-    MainRepository mainRepository ;
+    private MainRepository mainRepository;
+
     public MainController(MainRepository mainRepository) {
         this.mainRepository = mainRepository;
 
     }
+
     @GetMapping("persons/by-city")
-    public List<Person> getName(@RequestParam("city") String name){
+    public List<Person> getName(@RequestParam("city") String name) {
         return mainRepository.getPersonsByCity(name);
     }
 }
