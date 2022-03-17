@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -21,7 +23,19 @@ public class MainController {
     }
 
     @GetMapping("persons/by-city")
-    public List<Person> getName(@RequestParam("city") String name) {
-        return mainRepository.getPersonsByCity(name);
+    public List<Person> getPersonByCityName(@RequestParam("city") String name) {
+        return mainRepository.findByCityOfLiving(name);
+    }
+
+    @GetMapping("persons/by-age")
+    public List<Person> getPersonByName(@RequestParam("age") int age) {
+        return mainRepository.findByContactAgeLessThanOrderByContactAgeDesc(age);
+    }
+
+    @GetMapping("persons/by-name-surname")
+    public Optional<Person> getPerson(@RequestParam("name") String name, @RequestParam("surname") String surname) {
+        final Person entity = mainRepository.findByContactNameAndContactSurname(name, surname)
+                .orElseThrow(() -> new EntityNotFoundException("Entity " + name + " " + surname + " not found"));
+        return Optional.ofNullable(entity);
     }
 }
